@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_margin="10dp">
+
+
+    <de.hdodenhof.circleimageview.CircleImageView
+        android:id="@+id/ivAvatar"
+        android:layout_width="45dp"
+        android:layout_height="45dp"
+        android:layout_marginRight="10dp"
+        android:src="@android:drawable/ic_menu_more" />
+
+    <TextView
+        android:id="@+id/tvRate"
+        android:layout_width="wrap_content"
+        android:layout_height="15dp"
+        android:layout_alignParentRight="true"
+        android:text="6.7"
+        android:textStyle="bold" />
+
+    <TextView
+        android:id="@+id/tvName"
+        android:layout_width="match_parent"
+        android:layout_height="15dp"
+        android:layout_toEndOf="@+id/ivAvatar"
+        android:layout_toRightOf="@+id/ivAvatar"
+        android:text="Nguyen Thanh Minh"
+        android:textStyle="bold" />
+
+    <TextView
+        android:id="@+id/tvComment"
+        android:layout_width="match_parent"
+        android:layout_height="30dp"
+        android:layout_below="@+id/tvName"
+        android:layout_toRightOf="@+id/ivAvatar"
+        android:maxLines="2"
+        android:text="Món ngon ngon ngon ngon"
+        android:textSize="12sp" />
+
+
+    <de.hdodenhof.circleimageview.CircleImageView
+        android:id="@+id/ivAvatar2"
+        android:layout_width="45dp"
+        android:layout_height="45dp"
+        android:layout_below="@+id/ivAvatar"
+        android:layout_marginRight="10dp"
+        android:layout_marginTop="10dp"
+        android:src="@android:drawable/ic_menu_more" />
+
+    <TextView
+        android:id="@+id/tvRate2"
+        android:layout_width="wrap_content"
+        android:layout_height="15dp"
+        android:layout_alignParentRight="true"
+        android:layout_below="@+id/tvComment"
+        android:layout_marginTop="10dp"
+        android:text="6.7"
+        android:textStyle="bold" />
+
+    <TextView
+        android:id="@+id/tvName2"
+        android:layout_width="match_parent"
+        android:layout_height="15dp"
+        android:layout_below="@+id/tvComment"
+        android:layout_marginTop="10dp"
+        android:layout_toEndOf="@+id/ivAvatar2"
+        android:layout_toRightOf="@+id/ivAvatar2"
+        android:text="Nguyen Thanh Minh"
+        android:textStyle="bold" />
+
+    <TextView
+        android:id="@+id/tvComment2"
+        android:layout_width="match_parent"
+        android:layout_height="30dp"
+        android:layout_below="@+id/tvName2"
+        android:layout_toRightOf="@+id/ivAvatar2"
+        android:maxLines="2"
+        android:text="Món ngon ngon ngon ngon"
+        android:textSize="12sp" />
+</RelativeLayout>

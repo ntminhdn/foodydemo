@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@color/gray">
+
+    <View
+        android:id="@+id/divider"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true" />
+
+    <Button
+        android:paddingLeft="20dp"
+        android:id="@+id/btnGanToi"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="10dp"
+        android:layout_toLeftOf="@id/divider"
+        android:background="@drawable/list_button_bg"
+        android:drawableLeft="@drawable/home"
+        android:text="Gần tôi" />
+
+    <Button
+        android:paddingLeft="20dp"
+        android:id="@+id/btnCoupon"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentRight="true"
+        android:layout_margin="10dp"
+        android:layout_toRightOf="@id/divider"
+        android:background="@drawable/list_button_bg"
+        android:drawableLeft="@drawable/money"
+        android:text="Coupon" />
+
+    <Button
+        android:paddingLeft="20dp"
+        android:id="@+id/btnGanChoUuDai"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/btnGanToi"
+        android:layout_margin="10dp"
+        android:layout_toLeftOf="@id/divider"
+        android:background="@drawable/list_button_bg"
+        android:drawableLeft="@drawable/happy"
+        android:text="Ưu đãi" />
+
+    <Button
+        android:paddingLeft="20dp"
+        android:id="@+id/btnDatGiaoHang"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentRight="true"
+        android:layout_below="@+id/btnCoupon"
+        android:layout_margin="10dp"
+        android:layout_toRightOf="@id/divider"
+        android:background="@drawable/list_button_bg"
+        android:drawableLeft="@drawable/car"
+        android:text="Giao hàng" />
+</RelativeLayout>
