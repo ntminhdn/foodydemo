@@ -1,11 +1,14 @@
 package com.example.minhnt.foodydemo;
 
 import android.content.Context;
+import android.content.res.Resources;
 import android.graphics.Rect;
 import android.support.v4.view.PagerAdapter;
 import android.support.v4.view.ViewPager;
+import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.util.TypedValue;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -28,20 +31,48 @@ public class MainAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
     private List<ModelObject> objects;
     private LayoutInflater layoutInflater;
     private Context context;
+    private int type;
+
+    public static final int O_DAU = 0;
+    public static final int AN_GI = 1;
     public static final int SLIDE = 0;
     public static final int BUTTON = 1;
     public static final int DATA = 2;
 
 
-    public MainAdapter(Context context, List<ModelObject> objects) {
+    public MainAdapter(Context context, List<ModelObject> objects, int type) {
         this.objects = objects;
         this.context = context;
+        this.type = type;
         layoutInflater = LayoutInflater.from(context);
 
-        addData();
+        if (type == O_DAU) {
+            addData();
+        } else if (type == AN_GI) {
+            addAnGiData();
+        }
+
+    }
+
+    private void addAnGiData() {
+        objects.clear();
+        List<String> banners = new ArrayList<>();
+        banners.add("http://danangz.vn/wp-content/uploads/2016/07/sl_lon_98.png");
+        banners.add("http://foodecstasy.com/img/banner.png");
+        objects.add(new ModelObject(MainAdapter.SLIDE, new SlideModel(banners)));
+        objects.add(new ModelObject(MainAdapter.BUTTON, ""));
+
+        List<DataAnGiObject> data = new ArrayList<>();
+        data.add(new DataAnGiObject("King Place Restaurant", "12 Lê Duẩn", "https://media.foody.vn/res/g29/284869/prof/s640x400/foody-mobile-c2-jpg-644-636123091081270510.jpg", "Gà Lên Mâm", "http://images.tapchianhdep.net/15-11tong-hop-hinh-anh-hot-girl-9x-viet-de-thuong-nhat9.jpg", "Uyên", "1d"));
+        data.add(new DataAnGiObject("King Place Restaurant", "12 Lê Duẩn", "https://media.foody.vn/res/g29/284869/prof/s640x400/foody-mobile-c2-jpg-644-636123091081270510.jpg", "Gà Lên Mâm", "http://images.tapchianhdep.net/15-11tong-hop-hinh-anh-hot-girl-9x-viet-de-thuong-nhat9.jpg", "Uyên", "1d"));
+        data.add(new DataAnGiObject("King Place Restaurant", "12 Lê Duẩn", "https://media.foody.vn/res/g29/284869/prof/s640x400/foody-mobile-c2-jpg-644-636123091081270510.jpg", "Gà Lên Mâm", "http://images.tapchianhdep.net/15-11tong-hop-hinh-anh-hot-girl-9x-viet-de-thuong-nhat9.jpg", "Uyên", "1d"));
+        data.add(new DataAnGiObject("King Place Restaurant", "12 Lê Duẩn", "https://media.foody.vn/video/s800x450/foody-800x450%20sasin-636050635818573794.jpg", "Gà Lên Mâm", "http://images.tapchianhdep.net/15-11tong-hop-hinh-anh-hot-girl-9x-viet-de-thuong-nhat9.jpg", "Uyên", "1d"));
+        data.add(new DataAnGiObject("King Place Restaurant", "12 Lê Duẩn", "https://media.foody.vn/res/g29/284869/prof/s640x400/foody-mobile-c2-jpg-644-636123091081270510.jpg", "Gà Lên Mâm", "http://images.tapchianhdep.net/15-11tong-hop-hinh-anh-hot-girl-9x-viet-de-thuong-nhat9.jpg", "Uyên", "1d"));
+        objects.add(new ModelObject(DATA, data));
     }
 
     private void addData() {
+        objects.clear();
         List<String> urls = new ArrayList<>();
         urls.add("https://media.foody.vn/res/g29/284869/prof/s640x400/foody-mobile-c2-jpg-644-636123091081270510.jpg");
         urls.add("https://media.foody.vn/video/s800x450/foody-1-636060124092136779.jpg");
@@ -75,7 +106,14 @@ public class MainAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
             case BUTTON:
                 return new ButtonVH(layoutInflater.inflate(R.layout.item_list_button, parent, false));
             case DATA:
-                return new DataVH(layoutInflater.inflate(R.layout.item_data, parent, false));
+                if (type == O_DAU) {
+                    return new DataVH(layoutInflater.inflate(R.layout.item_data, parent, false));
+                } else if (type == AN_GI) {
+                    View itemView = layoutInflater.inflate(R.layout.item_data, parent, false);
+                    int height = parent.getMeasuredHeight() / 2;
+                    itemView.setMinimumHeight(height);
+                    return new DataAnGiVH(itemView);
+                }
         }
 
         return null;
@@ -91,7 +129,11 @@ public class MainAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
             case BUTTON:
                 break;
             case DATA:
-                ((DataVH) holder).setData((List<DataObject>) modelObject.object);
+                if (type == O_DAU) {
+                    ((DataVH) holder).setData((List<DataObject>) modelObject.object);
+                } else if (type == AN_GI) {
+                    ((DataAnGiVH) holder).setData((List<DataAnGiObject>) modelObject.object);
+                }
         }
     }
 
@@ -179,5 +221,31 @@ public class MainAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
             dataAdapter.setObjects(this.list);
             dataAdapter.notifyDataSetChanged();
         }
+    }
+
+    class DataAnGiVH extends RecyclerView.ViewHolder {
+        private RecyclerView recyclerView;
+        private DataAnGiAdapter dataAdapter;
+        private List<DataAnGiObject> list;
+
+        public DataAnGiVH(View itemView) {
+            super(itemView);
+            recyclerView = (RecyclerView) itemView.findViewById(R.id.rvData);
+            recyclerView.setLayoutManager(new GridLayoutManager(context, 2));
+            recyclerView.addItemDecoration(new GridSpacingItemDecoration(2, dpToPx(10), true));
+            dataAdapter = new DataAnGiAdapter(context, list);
+            recyclerView.setAdapter(dataAdapter);
+        }
+
+        public void setData(List<DataAnGiObject> list) {
+            this.list = list;
+            dataAdapter.setObjects(this.list);
+            dataAdapter.notifyDataSetChanged();
+        }
+    }
+
+    private int dpToPx(int dp) {
+        Resources r = context.getResources();
+        return Math.round(TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, dp, r.getDisplayMetrics()));
     }
 }

@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.v7.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <android.support.v7.widget.AppCompatImageView
+            android:id="@+id/ivFood"
+            android:layout_width="180dp"
+            android:layout_height="180dp"
+            android:scaleType="fitXY" />
+
+        <TextView
+            android:maxLines="1"
+            android:id="@+id/tvFoodName"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/ivFood"
+            android:layout_margin="5dp"
+            android:textSize="14sp" />
+
+        <TextView
+            android:maxLines="1"
+            android:id="@+id/tvRestName"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/tvFoodName"
+            android:layout_marginLeft="5dp"
+            android:layout_marginRight="5dp"
+            android:textSize="13sp"
+            android:textStyle="bold" />
+
+        <TextView
+            android:maxLines="1"
+            android:id="@+id/tvRestAdress"
+            android:layout_width="match_parent"
+            android:layout_marginLeft="5dp"
+            android:layout_marginRight="5dp"
+            android:layout_marginBottom="5dp"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/tvRestName"
+            android:textSize="12sp" />
+
+        <de.hdodenhof.circleimageview.CircleImageView
+            android:id="@+id/ivUserAvatar"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:layout_marginLeft="5dp"
+            android:layout_marginRight="5dp"
+            android:layout_below="@+id/tvRestAdress"
+            android:src="@drawable/car" />
+
+        <TextView
+            android:id="@+id/tvUserName"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/tvRestAdress"
+            android:layout_toRightOf="@+id/ivUserAvatar" />
+
+        <TextView
+            android:id="@+id/tvDateComment"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/tvUserName"
+            android:layout_toRightOf="@+id/ivUserAvatar" />
+    </RelativeLayout>
+</android.support.v7.widget.CardView>

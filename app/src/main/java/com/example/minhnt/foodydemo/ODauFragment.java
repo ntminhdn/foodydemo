@@ -50,7 +50,7 @@ public class ODauFragment extends Fragment {
     private void initView(View view) {
         recyclerView = (RecyclerView) view.findViewById(R.id.rvMain);
         recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
-        mainAdapter = new MainAdapter(getContext(), objects);
+        mainAdapter = new MainAdapter(getContext(), objects, MainAdapter.O_DAU);
         recyclerView.setAdapter(mainAdapter);
         mainAdapter.notifyDataSetChanged();
 
